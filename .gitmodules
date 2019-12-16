@@ -6,6 +6,3 @@
 	url = https://github.com/charlet-antoine/charlet-antoine.github.io.git
         ignore = all
 
-[submodule "antoine-charlet"]
-	path = antoine-charlet
-	url = https://github.com/charlet-antoine/antoine-charlet.git
