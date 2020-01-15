@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Deep Disgression - hdaho</title><link href="https://charlet-antoine.github.io/" rel="alternate"></link><link href="https://charlet-antoine.github.io/feeds/hdaho.atom.xml" rel="self"></link><id>https://charlet-antoine.github.io/</id><updated>2019-06-21T12:00:00+02:00</updated><entry><title>Seciond</title><link href="https://charlet-antoine.github.io/dzatool.html" rel="alternate"></link><published>2019-06-21T12:00:00+02:00</published><updated>2019-06-21T12:00:00+02:00</updated><author><name>Jon Doe</name></author><id>tag:charlet-antoine.github.io,2019-06-21:/dzatool.html</id><summary type="html">&lt;p&gt;This is the most important tool out there&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Deep Disgression - hdaho</title><link href="https://charlet-antoine.github.io/" rel="alternate"></link><link href="https://charlet-antoine.github.io/feeds/hdaho.atom.xml" rel="self"></link><id>https://charlet-antoine.github.io/</id><updated>2019-06-21T12:00:00+02:00</updated><entry><title>Seciond</title><link href="https://charlet-antoine.github.io/blog/2019/06/21/dzatool/" rel="alternate"></link><published>2019-06-21T12:00:00+02:00</published><updated>2019-06-21T12:00:00+02:00</updated><author><name>Jon Doe</name></author><id>tag:charlet-antoine.github.io,2019-06-21:/blog/2019/06/21/dzatool/</id><summary type="html">&lt;p&gt;&lt;img src="/images/antoine.JPG"/&gt; This is the most important tool out there&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1113,14 +1113,6 @@ h6:hover .anchor-link {
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;{% img [class name(s)] path/to/image [width [height]] [title text | "title text" ["alt text"]] %}&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 \begin{align}
 \nabla \cdot \vec{\mathbf{E}} &amp;amp; = 4 \pi \rho \\
 \nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} &amp;amp; = \vec{\mathbf{0}} \\
@@ -1133,6 +1125,14 @@ h6:hover .anchor-link {
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h1 id="EM-Algorithm"&gt;EM Algorithm&lt;a class="anchor-link" href="#EM-Algorithm"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;img src="/images/testJO.png" align="left" width="50" style="padding-right:20px;"/&gt;&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
