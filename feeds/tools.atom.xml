@@ -1110,7 +1110,59 @@ h6:hover .anchor-link {
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt; 
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="problems-with-computing-the-MAP"&gt;problems with computing the MAP&lt;a class="anchor-link" href="#problems-with-computing-the-MAP"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;ul&gt;
+&lt;li&gt;Non invariant to reparametrization&lt;/li&gt;
+&lt;li&gt;Maybe not enough density probability arround the point and imply a bad estimates&lt;/li&gt;
+&lt;li&gt;We need to avoid computing the evidence, cannot compute the Expection a posteriori or the median&lt;/li&gt;
+&lt;li&gt;We cannot compute confidence interval&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Aletrnative-Use-Conjugate-distribution"&gt;Aletrnative Use Conjugate distribution&lt;a class="anchor-link" href="#Aletrnative-Use-Conjugate-distribution"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;How to not compute the evidence but not reducing our parameters solution to a MAP estimate ?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prior and prosterior are in the same family of distribution if we pick a prior conjugate to our likelihood&lt;/li&gt;
+&lt;li&gt;Exemple Gamma Distribution with Normal likelihood&lt;/li&gt;
+&lt;li&gt;Beta distribution with Bernouilli likelihood&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;ul&gt;
+&lt;li&gt;Pro: We get an exact posterior&lt;/li&gt;
+&lt;li&gt;We can do online learning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cons: The conjugate prior might be inadequete&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ 
 
 
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {

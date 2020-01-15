@@ -1245,7 +1245,59 @@ h6:hover .anchor-link {
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style> 
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="problems-with-computing-the-MAP">problems with computing the MAP<a class="anchor-link" href="#problems-with-computing-the-MAP">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Non invariant to reparametrization</li>
+<li>Maybe not enough density probability arround the point and imply a bad estimates</li>
+<li>We need to avoid computing the evidence, cannot compute the Expection a posteriori or the median</li>
+<li>We cannot compute confidence interval</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Aletrnative-Use-Conjugate-distribution">Aletrnative Use Conjugate distribution<a class="anchor-link" href="#Aletrnative-Use-Conjugate-distribution">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>How to not compute the evidence but not reducing our parameters solution to a MAP estimate ?</p>
+<ul>
+<li>Prior and prosterior are in the same family of distribution if we pick a prior conjugate to our likelihood</li>
+<li>Exemple Gamma Distribution with Normal likelihood</li>
+<li>Beta distribution with Bernouilli likelihood</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Pro: We get an exact posterior</li>
+<li>We can do online learning</li>
+</ul>
+<p>Cons: The conjugate prior might be inadequete</p>
+
+</div>
+</div>
+</div>
+ 
 
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
