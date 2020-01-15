@@ -1113,6 +1113,14 @@ h6:hover .anchor-link {
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;{% img [class name(s)] path/to/image [width [height]] [title text | "title text" ["alt text"]] %}&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 \begin{align}
 \nabla \cdot \vec{\mathbf{E}} &amp;amp; = 4 \pi \rho \\
 \nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} &amp;amp; = \vec{\mathbf{0}} \\
@@ -1141,6 +1149,34 @@ h6:hover .anchor-link {
 &lt;ul&gt;
 &lt;li&gt;If we don't have a prior conjugate to the likelihood -&amp;gt; posterior is intractable&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Summary"&gt;Summary&lt;a class="anchor-link" href="#Summary"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Here are the timing results we've seen above:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Python + numpy&lt;/strong&gt;: 6510 ms&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cython + numpy&lt;/strong&gt;: 668 ms&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cython + memviews (slicing)&lt;/strong&gt;: 22 ms&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cython + raw pointers&lt;/strong&gt;: 2.47 ms&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cython + memviews (no slicing)&lt;/strong&gt;: 2.45 ms&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: All of the above scripts are now available as an ipython
+notebook: &lt;a href="/downloads/notebooks/memview_bench.ipynb"&gt;memview_bench.ipynb&lt;/a&gt;.
+For information on how to view this file, see the
+&lt;a href="http://ipython.org/ipython-doc/dev/interactive/htmlnotebook.html"&gt;IPython page&lt;/a&gt;
+Alternatively, you can view this notebook (but not modify it) using the
+nbviewer &lt;a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/memview_bench.ipynb"&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
