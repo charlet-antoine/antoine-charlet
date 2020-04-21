@@ -5,35 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://charlet-antoine.github.io/</loc>
-<lastmod>2020-04-21T12:18:57-00:00</lastmod>
+<lastmod>2020-04-21T12:29:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://charlet-antoine.github.io/tags.html</loc>
-<lastmod>2020-04-21T12:18:57-00:00</lastmod>
+<lastmod>2020-04-21T12:29:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://charlet-antoine.github.io/categories.html</loc>
-<lastmod>2020-04-21T12:18:57-00:00</lastmod>
+<lastmod>2020-04-21T12:29:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://charlet-antoine.github.io/authors.html</loc>
-<lastmod>2020-04-21T12:18:57-00:00</lastmod>
+<lastmod>2020-04-21T12:29:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://charlet-antoine.github.io/archives.html</loc>
-<lastmod>2020-04-21T12:18:57-00:00</lastmod>
+<lastmod>2020-04-21T12:29:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -41,6 +41,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://charlet-antoine.github.io/pages/about.html</loc>
 <lastmod>2019-06-21T12:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://charlet-antoine.github.io/blog/2020/04/21/hohohohhho/</loc>
+<lastmod>2020-04-21T12:00:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -54,13 +61,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://charlet-antoine.github.io/blog/2019/06/21/dzatool/</loc>
-<lastmod>2019-06-21T12:00:00+02:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://charlet-antoine.github.io/blog/2019/06/21/hohohohhho/</loc>
 <lastmod>2019-06-21T12:00:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
