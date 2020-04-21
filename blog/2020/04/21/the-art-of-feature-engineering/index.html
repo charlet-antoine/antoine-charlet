@@ -63,7 +63,7 @@
 <meta property="article:tag" content="best practice"/>
 <meta property="article:tag" content="software"/>
 <meta property="article:tag" content="best"/>
-<meta property="og:image" content="https://charlet-antoine.github.io/images/antoine.JPG">
+<meta property="og:image" content="https://charlet-antoine.github.io/images/testJO.png">
 
 <!-- Twitter Card -->
 
@@ -80,7 +80,7 @@
     "name": "Antoine Charlet",
     "url": "https://charlet-antoine.github.io/author/antoine-charlet.html"
   },
-  "image": "https://charlet-antoine.github.io/images/antoine.JPG",
+  "image": "https://charlet-antoine.github.io/images/testJO.png",
   "url": "https://charlet-antoine.github.io/blog/2020/04/21/the-art-of-feature-engineering/",
   "description": "Cookbook feature"
 }
@@ -1250,11 +1250,168 @@ h6:hover .anchor-link {
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-\begin{align}
-\nabla \cdot \vec{\mathbf{E}} &amp; = 4 \pi \rho \\
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} &amp; = \vec{\mathbf{0}} \\
-\nabla \cdot \vec{\mathbf{B}} &amp; = 0
+<h2 id="Basic-feature-engineering">Basic feature engineering<a class="anchor-link" href="#Basic-feature-engineering">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>1) Numeric Feature</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">min_max_scaler</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">X</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">std_scaler</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">min_max_scaler</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="n">num_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;float64&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2) Categorical Feature</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="One-Hot-encoding">One Hot encoding<a class="anchor-link" href="#One-Hot-encoding">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Mean-encoding">Mean encoding<a class="anchor-link" href="#Mean-encoding">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p style='text-align: justify'>
+    A "one hot" encoding is the go-to in a fair amount of cases, however when we are dealing with high cardinality category variables there are some drawbacks using this encoding. Indeed, a one-hot encoding on those features will result in highly sparse matrixes and might raise further issues during the training depending on the model we are trying to fit. A mean encoding can be an interesting alternative than a simpler label encoding that would not provide any correlations with the target.
+<br><br>
+    Applying a mean encoding can be worth to try when we want to model complex and non linear feature-target dependencies as its sorting quality will help the classifier to better separate our classes. Tree based models usually don't do well with high cardinality categorical variables due to ther limited depth. With mean encoding, we can compensate for this weakness since the mean encoding allow our tree-based model to reach better loss with shorter tree.
+<br><br>
+    The idea of mean encoding can be extended to generate further features. As always there are no general rules, the best encoding will depend on your situation but below is a list of encoding you may want to try.
+<br><br>
+</p>\begin{align}
+&amp;\text{Weight of Evidence:}&amp; \quad \ln(\frac{Positive}{Negative}) * 100 \\
+&amp;\text{Difference:}&amp; \quad Positive - Negative \\
+&amp;\text{Sum:}&amp; \quad Positive + Negative
 \end{align}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simple_mean_encoding</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">,</span> <span class="n">encoding_type</span><span class="o">=</span> <span class="s1">&#39;mean&#39;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_features</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">encoding_type</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;categorical_feature&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">encoding_type</span> <span class="o">==</span> <span class="s1">&#39;weight_evidence&#39;</span><span class="p">:</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;categorical_feature&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;categorical_feature&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">X</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_encoded&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When using those techniques, it is important to be pay an extra attention as we don't want to introduce a leak when proceeding. We want to split the data into a train and a validation set before doing anything else. Once done, we will estimate the encoding on the train set and then apply it on the validation set.</p>
+<p>Need to regularize or overfitting</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
+
+<span class="k">def</span> <span class="nf">cv_mean_encoding</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">skf</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+    <span class="n">prior</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">train_idx</span><span class="p">,</span> <span class="n">val_idx</span> <span class="ow">in</span> <span class="n">skf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">target</span><span class="p">):</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">val_idx</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_features</span><span class="p">:</span>
+            <span class="n">mu</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">alpha</span><span class="p">:</span>
+                <span class="n">nrows</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+                <span class="n">mu_smoothed</span> <span class="o">=</span> <span class="p">(</span><span class="n">nrows</span> <span class="o">*</span> <span class="n">mu</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">prior</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nrows</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">)</span>
+                <span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">val_idx</span><span class="p">,</span> <span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_encoded&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_val</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mu_smoothed</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">val_idx</span><span class="p">,</span> <span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_encoded&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_val</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+    <span class="n">X</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">expanding_mean_encoding</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">,</span> <span class="n">max_permutation</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">n_rows</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">max_permutation</span><span class="p">,</span> <span class="n">n_rows</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_features</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">n_permutation</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_permutation</span><span class="p">):</span>
+            <span class="n">permutation</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+            <span class="n">cumsum</span> <span class="o">=</span> <span class="n">permutation</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">-</span> <span class="n">permutation</span><span class="o">.</span><span class="n">target</span>
+            <span class="n">cumcount</span> <span class="o">=</span> <span class="n">permutation</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">cumcount</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">means</span><span class="p">[</span><span class="n">n_permutation</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">cumsum</span> <span class="o">/</span> <span class="n">cumcount</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+        <span class="n">X</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_encoded&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">means</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">max_permutation</span><span class="p">,</span> <span class="n">n_rows</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">X</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Advance-feature-engineering">Advance feature engineering<a class="anchor-link" href="#Advance-feature-engineering">&#182;</a></h2>
 </div>
 </div>
 </div>
