@@ -1433,10 +1433,6 @@ img {
     margin: 0
 }
 
-.post-content a {
-    border-bottom: 1px solid #f26a3d
-}
-
 .post-content a:hover,
 .post-content a:focus {
     color: #f26a3d
