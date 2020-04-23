@@ -1384,19 +1384,12 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a id='NumericFeature'></a></p>
-<h3 id="The-preprocessing-of-numeric-features">The preprocessing of numeric features<a class="anchor-link" href="#The-preprocessing-of-numeric-features">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p style='text-align: justify'>
+<h3 id="The-preprocessing-of-numeric-features">The preprocessing of numeric features<a class="anchor-link" href="#The-preprocessing-of-numeric-features">&#182;</a></h3><p><a id='NumericFeature'></a></p>
+<h4 id="The-importance-of-properly-scaling-those-features">The importance of properly scaling those features<a class="anchor-link" href="#The-importance-of-properly-scaling-those-features">&#182;</a></h4><p style='text-align: justify'>
 While handling the preprocessing of numeric features, it is important to know whether or not our model depends on the scale of our features. As a rule of thumb, we can categorize models into tree-based models and non-tree based models and keep in mind that while scaling will generally not impact the quality of a tree-based model, it will almost surely impact non-tree based models.
-
+<br><br>
 Usually, we use preprocessing to scale all features to the same scale, so that their initial impact will be roughly equivalent. But it also can be interesting in some scenario to tune the scaling of some critical features to boost their influences on our predictions.
-
+<br><br>
 Regularization impact will be proportional to feature scale.
 Gradient descent can go crazy without proper scaling
 
@@ -1415,28 +1408,19 @@ It is considered as best practice to estimate the proper scaling on the training
     <span class="n">X_num</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span><span class="s1">&#39;int64&#39;</span><span class="p">])</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">X_num</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X_num</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">X_num</span><span class="p">)</span>
 </pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="How-do-we-deal-with-the-presence-of-outliers-?">How do we deal with the presence of outliers ?<a class="anchor-link" href="#How-do-we-deal-with-the-presence-of-outliers-?">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">rankdata</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">power_transform</span>
+</pre></div>
+<h4 id="How-do-we-deal-with-the-presence-of-outliers-?">How do we deal with the presence of outliers ?<a class="anchor-link" href="#How-do-we-deal-with-the-presence-of-outliers-?">&#182;</a></h4><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">rankdata</span>
 
 <span class="k">def</span> <span class="nf">winsorize</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">])</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+<p style='text-align: justify'> Applying feature transformation can sometimes improve our predictions significatively as those transformations are non-linear and will move outliers relatively closer to other samples.</p><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">power_transform</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1490,41 +1474,7 @@ It is considered as best practice to estimate the proper scaling on the training
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Applying feature transformation can sometimes improve our predictions significatively as those transformations are non-linear and will move outliers relatively closer to other samples.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">power_transform</span>
-
-<span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span>
-<span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Categorical-Feature">Categorical Feature<a class="anchor-link" href="#Categorical-Feature">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Feature-Interaction">Feature Interaction<a class="anchor-link" href="#Feature-Interaction">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+<h2 id="Categorical-Feature">Categorical Feature<a class="anchor-link" href="#Categorical-Feature">&#182;</a></h2><h4 id="Feature-Interaction">Feature Interaction<a class="anchor-link" href="#Feature-Interaction">&#182;</a></h4><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
 
 <span class="k">def</span> <span class="nf">cat_features_interactions</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">max_order</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="n">X_cat</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">])</span>
@@ -1539,21 +1489,7 @@ It is considered as best practice to estimate the proper scaling on the training
             <span class="n">X_inter</span><span class="p">[</span><span class="n">interaction</span><span class="p">]</span> <span class="o">=</span> <span class="n">helper</span><span class="p">(</span><span class="n">X_cat</span><span class="p">,</span> <span class="o">*</span><span class="n">interaction</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">X_inter</span>
 </pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1)-Label-encoding">1) Label encoding<a class="anchor-link" href="#1)-Label-encoding">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p style='text-align: justify'>
+<h4 id="1)-Label-encoding">1) Label encoding<a class="anchor-link" href="#1)-Label-encoding">&#182;</a></h4><p style='text-align: justify'>
 Label encoding is probably the simplest way we can think of to create an encoding for our categorical variables.
 <br><br>
 Looking at the exemple below, it doesn't seem wise to use this encoding with a linear or a distance-based models as this encoding introduce non linear relationship that will confuse a linear model. Moreover, it introduces an artificial distance of 1 between our categories while there is no such underpinning topology.
@@ -1563,7 +1499,7 @@ Looking at the exemple below, it doesn't seem wise to use this encoding with a l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
@@ -1596,8 +1532,8 @@ Looking at the exemple below, it doesn't seem wise to use this encoding with a l
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>That being said, when the categorical features are ordinals, this type of encoding can be applied in combination with a tree based model and help to reduce the number of splits necessary.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<p style='text-align: justify'>
+That being said, when the categorical features are ordinals, this type of encoding can be applied in combination with a tree based model and help to reduce the number of splits necessary.</p><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
 
 <span class="k">def</span> <span class="nf">label_encoding</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
     <span class="n">X_cat</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">])</span>
@@ -1607,22 +1543,9 @@ Looking at the exemple below, it doesn't seem wise to use this encoding with a l
         <span class="n">X_cat</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">encoder</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_cat</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">X_cat</span><span class="p">,</span> <span class="n">encoder</span>
 </pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="2)-Frequency-encoding">2) Frequency encoding<a class="anchor-link" href="#2)-Frequency-encoding">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If we have reason to believe that the frequency of category is correlated with target value, linear model can leverage this dependency to improve our predictions and it will help to decrease the number of splits if we decide to use a tree based model. Here below an implementation of such encoding:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">frequency_encoding</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+<h4 id="2)-Frequency-encoding">2) Frequency encoding<a class="anchor-link" href="#2)-Frequency-encoding">&#182;</a></h4><p style='text-align: justify'>
+If we have reason to believe that the frequency of category is correlated with target value, linear model can leverage this dependency to improve our predictions and it will help to decrease the number of splits if we decide to use a tree based model. Here below an implementation of such encoding:
+</p><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">frequency_encoding</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
     <span class="n">encoding</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">X_cat</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_cat</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
@@ -1630,21 +1553,7 @@ Looking at the exemple below, it doesn't seem wise to use this encoding with a l
         <span class="n">X_cat</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_cat</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">encoding</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">X_cat</span><span class="p">,</span> <span class="n">encoding</span>
 </pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="3)-One-Hot-encoding">3) One Hot encoding<a class="anchor-link" href="#3)-One-Hot-encoding">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The "one hot" encoder is the go-to in a fair amount of cases,</p>
+<h4 id="3)-One-Hot-encoding">3) One Hot encoding<a class="anchor-link" href="#3)-One-Hot-encoding">&#182;</a></h4><p>The "one hot" encoder is the go-to in a fair amount of cases,</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
 
 <span class="k">def</span> <span class="nf">one_hot_encode</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -1662,44 +1571,33 @@ Though when we are dealing with high cardinality category variables there are so
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="4)-Mean-encoding">4) Mean encoding<a class="anchor-link" href="#4)-Mean-encoding">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><p style='text-align: justify'>
+<h4 id="4)-Mean-encoding">4) Mean encoding<a class="anchor-link" href="#4)-Mean-encoding">&#182;</a></h4><p style='text-align: justify'>
     Applying a mean encoding can be worth to try when we want to model complex and non linear feature-target dependencies as its sorting quality will help the classifier to better separate our classes. Tree based models usually don't do well with high cardinality categorical variables due to ther limited depth. With mean encoding, we can compensate for this weakness since the mean encoding allow our tree-based model to reach better loss with shorter tree.
 <br><br>
     The idea of mean encoding can be extended to generate further features. As always there are no general rules, the best encoding will depend on your situation but below is a list of encoding you may want to try.
 <br><br>
 </p>
 \begin{eqnarray}
-\text{Weight of Evidence:}&amp; \quad \ln(\frac{Positive}{Negative}) \times 100 \\
-\text{Difference:}&amp; \quad Positive -\, Negative \\
-\text{Sum:}&amp; \quad Positive +\, Negative 
-\end{eqnarray}</p>
+\text{Weight of Evidence:}& \quad \ln(\frac{Positive}{Negative}) \times 100 \\
+\text{Difference:}& \quad Positive -\, Negative \\
+\text{Sum:}& \quad Positive +\, Negative 
+\end{eqnarray}
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simple_mean_encoding</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_features</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">encoding</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
-            <span class="n">encoding</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="n">encoding</span> <span class="o">==</span> <span class="s1">&#39;weight_evidence&#39;</span><span class="p">:</span>
-            <span class="n">encoding</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-                <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">encoding</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-                <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span>
-        <span class="n">X</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_encoded&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">X</span>
-</pre></div>
+``` python
+def simple_mean_encoding(X, categorical_features, encoding='mean'):
+    for col in categorical_features:
+        if encoding == 'mean':
+            encoding = X.groupby(col).target.mean()
+        elif encoding == 'weight_evidence':
+            encoding = X.groupby(col).target.apply(
+                lambda x: np.log(np.sum(x==1) / np.sum(x==0)) * 100)
+        else:
+            encoding = X.groupby(col).target.apply(
+                lambda x : np.sum(x==1) - np.sum(x==0))
+        X[col + '_encoded'] = X[col].map(encoding)
+    return X
+```
+
 <p style='text-align: justify'>
 It is important to proceed with caution when we want to target encode a categorical variable as the risk of introducing a leak in our training set is high and will lead to a terrible overfitting.
 
