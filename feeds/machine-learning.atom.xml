@@ -1110,26 +1110,102 @@ h6:hover .anchor-link {
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Basic-feature-engineering"&gt;Basic feature engineering&lt;a class="anchor-link" href="#Basic-feature-engineering"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[84]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_iris&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.neighbors&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;KNeighborsClassifier&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.model_selection&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.preprocessing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MinMaxScaler&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;StandardScaler&lt;/span&gt;
+
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_iris&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;target&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;scaler&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MinMaxScaler&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;knn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KNeighborsClassifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_neighbors&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;X_train_scaled&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;scaler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit_transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;X_test_scaled&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;scaler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;knn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;knn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;predict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="n"&gt;knn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train_scaled&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;knn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;predict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test_scaled&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;0.9736842105263158
+0.9736842105263158
+&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;1) Numeric Feature&lt;/p&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;min_max_scaler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;h2 id="Feature-Preprocessing"&gt;Feature Preprocessing&lt;a class="anchor-link" href="#Feature-Preprocessing"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h4 id="Numeric-Feature"&gt;Numeric Feature&lt;a class="anchor-link" href="#Numeric-Feature"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p style='text-align: justify'&gt;
+While handling the preprocessing of numeric features, it is important to know whether or not our model depends on the scale of our features. As a rule of thumb, we can categorize models into tree-based models and non-tree based models and keep in mind that while scaling will generally not impact the quality of a tree-based model, it will almost surely impact non-tree based models.
+
+Usually, we use preprocessing to scale all features to the same scale, so that their initial impact will be roughly equivalent. But it also can be interesting in some scenario to tune the scaling of some critical features to boost their influences on our predictions.
+
+Regularization impact will be proportional to feature scale.
+Gradient descent can go crazy without proper scaling
+
+It is considered as best practice to estimate the proper scaling on the training set and then to apply the same scaling to the test set, as we do not want to use knowledge about the distribution in the test set.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.preprocessing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MinMaxScaler&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;StandardScaler&lt;/span&gt;
+&lt;span class="n"&gt;scaler&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MinMaxScaler&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;scaler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit_transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;scaler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;min_max_scaler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;X_num&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select_dtypes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;float64&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;int64&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_num&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_num&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_num&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_num&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;std_scaler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;X_num&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select_dtypes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;float64&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;int64&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_num&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_num&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_num&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
@@ -1138,22 +1214,90 @@ h6:hover .anchor-link {
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;std_scaler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;h3 id="How-do-we-deal-with-the-presence-of-outliers-?"&gt;How do we deal with the presence of outliers ?&lt;a class="anchor-link" href="#How-do-we-deal-with-the-presence-of-outliers-?"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;min_max_scaler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;num_features&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select_dtypes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;float64&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy.stats&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;rankdata&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.preprocessing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;power_transform&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;winsorize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;upper&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;percentile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;upper&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[168]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[185]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scale&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scatter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                             
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt output_prompt"&gt;Out[185]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;[&amp;lt;matplotlib.lines.Line2D at 0x128ecb9d0&amp;gt;]&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class="output_png output_subarea "&gt;
+&lt;img src="data:image/png;base64,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
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
@@ -1180,33 +1324,35 @@ h6:hover .anchor-link {
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p style='text-align: justify'&gt;
+&lt;p&gt;&lt;p style='text-align: justify'&gt;
     A "one hot" encoding is the go-to in a fair amount of cases, however when we are dealing with high cardinality category variables there are some drawbacks using this encoding. Indeed, a one-hot encoding on those features will result in highly sparse matrixes and might raise further issues during the training depending on the model we are trying to fit. A mean encoding can be an interesting alternative than a simpler label encoding that would not provide any correlations with the target.
 &lt;br&gt;&lt;br&gt;
     Applying a mean encoding can be worth to try when we want to model complex and non linear feature-target dependencies as its sorting quality will help the classifier to better separate our classes. Tree based models usually don't do well with high cardinality categorical variables due to ther limited depth. With mean encoding, we can compensate for this weakness since the mean encoding allow our tree-based model to reach better loss with shorter tree.
 &lt;br&gt;&lt;br&gt;
     The idea of mean encoding can be extended to generate further features. As always there are no general rules, the best encoding will depend on your situation but below is a list of encoding you may want to try.
 &lt;br&gt;&lt;br&gt;
-&lt;/p&gt;\begin{align}
-&amp;amp;\text{Weight of Evidence:}&amp;amp; \quad \ln(\frac{Positive}{Negative}) * 100 \\
-&amp;amp;\text{Difference:}&amp;amp; \quad Positive - Negative \\
-&amp;amp;\text{Sum:}&amp;amp; \quad Positive + Negative
-\end{align}
+&lt;/p&gt;
+\begin{eqnarray}
+&amp;amp;\text{Weight of Evidence:}&amp;amp; \quad \ln(\frac{Positive}{Negative}) \times 100 \\
+&amp;amp;\text{Difference:}&amp;amp; \quad Positive -\, Negative \\
+&amp;amp;\text{Sum:}&amp;amp; \quad Positive +\, Negative \\
+\end{eqnarray}&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;simple_mean_encoding&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;categorical_features&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encoding_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;mean&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;simple_mean_encoding&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;categorical_features&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mean&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;categorical_features&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;encoding_type&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;mean&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;categorical_feature&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;encoding_type&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;weight_evidence&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;categorical_feature&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;mean&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;weight_evidence&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
                 &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;categorical_feature&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
                 &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
         &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;_encoded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;
@@ -1218,9 +1364,19 @@ h6:hover .anchor-link {
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;When using those techniques, it is important to be pay an extra attention as we don't want to introduce a leak when proceeding. We want to split the data into a train and a validation set before doing anything else. Once done, we will estimate the encoding on the train set and then apply it on the validation set.&lt;/p&gt;
-&lt;p&gt;Need to regularize or overfitting&lt;/p&gt;
+&lt;p style='text-align: justify'&gt;
+It is important to proceed with caution when we want to target encode a categorical variable as the risk of introducing a leak in our training set is high and will lead to a terrible overfitting.
 
+&lt;ol&gt;
+    &lt;li&gt; Split the training data into a train and a validation set
+    &lt;li&gt; Estimate our encoding on the train set and apply it on our validation set
+    &lt;li&gt; Apply a regularised version of our encoding on the train set
+    &lt;li&gt; Fit a model on our training set and validate
+&lt;/ol&gt;
+We want to split the data into a train and a validation set before doing anything else. Once done, we will estimate the encoding on the train set and then apply it on the validation set.
+
+Need to regularize or overfitting
+&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1256,15 +1412,16 @@ h6:hover .anchor-link {
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;expanding_mean_encoding&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;categorical_features&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_permutation&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;n_rows&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="n"&gt;means&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;max_permutation&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n_rows&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
+    &lt;span class="n"&gt;prior&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;categorical_features&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n_permutation&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_permutation&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
             &lt;span class="n"&gt;permutation&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reindex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;permutation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
             &lt;span class="n"&gt;cumsum&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;permutation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cumsum&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;permutation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;
-            &lt;span class="n"&gt;cumcount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;permutation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cumcount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+            &lt;span class="n"&gt;cumcount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;permutation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cumcount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
             &lt;span class="n"&gt;means&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;n_permutation&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cumsum&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;cumcount&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_index&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;_encoded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;means&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;means&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;max_permutation&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n_rows&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;categorical_features&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fillna&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prior&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1309,4 +1466,4 @@ h6:hover .anchor-link {
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="Machine Learning"></category><category term="best practice"></category><category term="software"></category><category term="best"></category></entry></feed>
+</content><category term="Machine Learning"></category><category term="cookbook"></category></entry></feed>
