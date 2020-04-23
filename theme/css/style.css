@@ -545,11 +545,6 @@ ul {
     list-style: none
 }
 
-li {
-    position: relative;
-    display: block
-}
-
 ul>li:before,
 ol>li:before {
     position: absolute;
@@ -569,10 +564,12 @@ ul>li:before {
 }
 
 ol {
-    list-style-type: none;
-    counter-reset: item
+  counter-reset: item
 }
-
+li {
+  position: relative;
+  display: block
+}
 li:before {
   content: counters(item, ".") " ";
   counter-increment: item
