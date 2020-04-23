@@ -1113,13 +1113,6 @@ h6:hover .anchor-link {
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Feature-Preprocessing"&gt;Feature Preprocessing&lt;a class="anchor-link" href="#Feature-Preprocessing"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h1 id="Sections"&gt;Sections&lt;a class="anchor-link" href="#Sections"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;ol&gt;
     &lt;li&gt;&amp;emsp;&lt;a href='#NumericFeature'&gt;The preprocessing of numeric features&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&amp;emsp;&lt;a href='#CategoricalFeature'&gt;The preprocessing of categorical features&lt;/a&gt;&lt;/li&gt;

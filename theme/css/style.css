@@ -546,7 +546,8 @@ ul {
 }
 
 li {
-    position: relative
+    position: relative;
+    display: block
 }
 
 ul>li:before,
@@ -573,7 +574,7 @@ ol {
 }
 
 ol>li:before {
-    content: counter(item) ". " !important;
+    content: counters(item, ".") " ";
     counter-increment: item
 }
 
