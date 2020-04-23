@@ -1243,13 +1243,40 @@ h6:hover .anchor-link {
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing code_cell rendered">
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Feature-Preprocessing">Feature Preprocessing<a class="anchor-link" href="#Feature-Preprocessing">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sections">Sections<a class="anchor-link" href="#Sections">&#182;</a></h1><ol>
+    <li>&emsp;<a href='#NumericFeature'>The preprocessing of numeric features</a></li>
+    <li>&emsp;<a href='#CategoricalFeature'>The preprocessing of categorical features</a></li>
+    <ol>
+        <li>&emsp;<a href='#FeatureInteractions'>Feature interactions</a></li>
+        <li>&emsp;<a href='#LabelEncoding'>Label encoding</a></li>
+        <li>&emsp;<a href='#FrequencyEncoding'>Frequency encoding</a></li>
+        <li>&emsp;<a href='#OneHotencoding'>One Hot encoding</a></li>
+        <li>&emsp;<a href='#MeanEncoding'>Mean encoding</a></li>
+    </ol>
+    <li>&emsp;<a href='#CategoricalFeature'>The preprocessing of datetime features</a></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span><span class="p">;</span> <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 
 <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span><span class="n">HTML</span>
 <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;style&gt;.prompt{width: 0px; min-width: 0px; visibility: collapse}&lt;/style&gt;&#39;</span><span class="p">))</span>
@@ -1363,14 +1390,8 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Feature-Preprocessing">Feature Preprocessing<a class="anchor-link" href="#Feature-Preprocessing">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Numeric-Feature">Numeric Feature<a class="anchor-link" href="#Numeric-Feature">&#182;</a></h4>
+<p><a id='NumericFeature'></a></p>
+<h3 id="The-preprocessing-of-numeric-features">The preprocessing of numeric features<a class="anchor-link" href="#The-preprocessing-of-numeric-features">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -1386,14 +1407,7 @@ Regularization impact will be proportional to feature scale.
 Gradient descent can go crazy without proper scaling
 
 It is considered as best practice to estimate the proper scaling on the training set and then to apply the same scaling to the test set, as we do not want to use knowledge about the distribution in the test set.
-</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">StandardScaler</span>
+</p><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">StandardScaler</span>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
 
 <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
@@ -1414,7 +1428,7 @@ It is considered as best practice to estimate the proper scaling on the training
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="How-do-we-deal-with-the-presence-of-outliers-?">How do we deal with the presence of outliers ?<a class="anchor-link" href="#How-do-we-deal-with-the-presence-of-outliers-?">&#182;</a></h3>
+<h4 id="How-do-we-deal-with-the-presence-of-outliers-?">How do we deal with the presence of outliers ?<a class="anchor-link" href="#How-do-we-deal-with-the-presence-of-outliers-?">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -1433,20 +1447,6 @@ It is considered as best practice to estimate the proper scaling on the training
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span><span class="p">;</span> <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1523,8 +1523,7 @@ It is considered as best practice to estimate the proper scaling on the training
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Feature Interaction</p>
-
+<h3 id="Feature-Interaction">Feature Interaction<a class="anchor-link" href="#Feature-Interaction">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -1604,13 +1603,6 @@ Looking at the exemple below, it doesn't seem wise to use this encoding with a l
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>That being said, when the categorical features are ordinals, this type of encoding can be applied in combination with a tree based model and help to reduce the number of splits necessary.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
 
 <span class="k">def</span> <span class="nf">label_encoding</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -1667,13 +1659,6 @@ Looking at the exemple below, it doesn't seem wise to use this encoding with a l
     <span class="n">X_enc</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_cat</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">X_enc</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">encoder</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">X_cat</span><span class="o">.</span><span class="n">columns</span><span class="p">)),</span> <span class="n">encoder</span>
 </pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p style='text-align: justify'>
 Though when we are dealing with high cardinality category variables there are some drawbacks with this encoding. Indeed, the encoding of those features will output highly sparse matrixes and this might be problematic during the training depending on the model we are trying to fit. In this case, a mean encoding can be an interesting alternative than a simpler label encoding that would not provide any correlations with the target.
 </p>
@@ -1721,13 +1706,6 @@ Though when we are dealing with high cardinality category variables there are so
         <span class="n">X</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_encoded&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">X</span>
 </pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p style='text-align: justify'>
 It is important to proceed with caution when we want to target encode a categorical variable as the risk of introducing a leak in our training set is high and will lead to a terrible overfitting.
 
@@ -1740,14 +1718,7 @@ It is important to proceed with caution when we want to target encode a categori
 We want to split the data into a train and a validation set before doing anything else. Once done, we will estimate the encoding on the train set and then apply it on the validation set.
 
 Need to regularize or overfitting
-</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
+</p><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
 
 <span class="k">def</span> <span class="nf">cv_mean_encoding</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">skf</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
@@ -1766,13 +1737,6 @@ Need to regularize or overfitting
     <span class="n">X</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">X</span>
 </pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">expanding_mean_encoding</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">,</span> <span class="n">max_permutation</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">n_rows</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">max_permutation</span><span class="p">,</span> <span class="n">n_rows</span><span class="p">))</span>
@@ -1789,6 +1753,13 @@ Need to regularize or overfitting
     <span class="k">return</span> <span class="n">X</span>
 </pre></div>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Datetime-Feature">Datetime Feature<a class="anchor-link" href="#Datetime-Feature">&#182;</a></h2>
 </div>
 </div>
 </div>
