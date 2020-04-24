@@ -1571,33 +1571,37 @@ Though when we are dealing with high cardinality category variables there are so
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="4)-Mean-encoding">4) Mean encoding<a class="anchor-link" href="#4)-Mean-encoding">&#182;</a></h4><p style='text-align: justify'>
+<h4 id="4)-Mean-encoding">4) Mean encoding<a class="anchor-link" href="#4)-Mean-encoding">&#182;</a></h4><p><p style='text-align: justify'>
     Applying a mean encoding can be worth to try when we want to model complex and non linear feature-target dependencies as its sorting quality will help the classifier to better separate our classes. Tree based models usually don't do well with high cardinality categorical variables due to ther limited depth. With mean encoding, we can compensate for this weakness since the mean encoding allow our tree-based model to reach better loss with shorter tree.
 <br><br>
     The idea of mean encoding can be extended to generate further features. As always there are no general rules, the best encoding will depend on your situation but below is a list of encoding you may want to try.
 <br><br>
 </p>
 \begin{eqnarray}
-\text{Weight of Evidence:}& \quad \ln(\frac{Positive}{Negative}) \times 100 \\
-\text{Difference:}& \quad Positive -\, Negative \\
-\text{Sum:}& \quad Positive +\, Negative 
-\end{eqnarray}
+\text{Weight of Evidence:}&amp; \quad \ln(\frac{Positive}{Negative}) \times 100 \\
+\text{Difference:}&amp; \quad Positive -\, Negative \\
+\text{Sum:}&amp; \quad Positive +\, Negative 
+\end{eqnarray}</p>
 
-``` python
-def simple_mean_encoding(X, categorical_features, encoding='mean'):
-    for col in categorical_features:
-        if encoding == 'mean':
-            encoding = X.groupby(col).target.mean()
-        elif encoding == 'weight_evidence':
-            encoding = X.groupby(col).target.apply(
-                lambda x: np.log(np.sum(x==1) / np.sum(x==0)) * 100)
-        else:
-            encoding = X.groupby(col).target.apply(
-                lambda x : np.sum(x==1) - np.sum(x==0))
-        X[col + '_encoded'] = X[col].map(encoding)
-    return X
-```
-
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simple_mean_encoding</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_features</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">encoding</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">encoding</span> <span class="o">==</span> <span class="s1">&#39;weight_evidence&#39;</span><span class="p">:</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">X</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_encoded&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span>
+</pre></div>
 <p style='text-align: justify'>
 It is important to proceed with caution when we want to target encode a categorical variable as the risk of introducing a leak in our training set is high and will lead to a terrible overfitting.
 
